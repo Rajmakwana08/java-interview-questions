@@ -6168,10 +6168,115 @@ Date: Sat Oct 05 10:32:00 IST 2025
 `
     },
     {
-      id: 1,
-      question: "",
+      id: 11.11,
+      question: "11.11 Collection Framework Write a program for creating an ArrayList, add the elements in array list and then obtain an array from ArrayList and display the contents and sum of those numbers.",
       answer: "",
-      codeExample: ``
+      codeExample: `
+💻 Java Source Code
+
+
+import java.util.*;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // Step 1: Create an ArrayList of Integers
+        ArrayList<Integer> list = new ArrayList<>();
+
+        // Step 2: Add elements
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+        list.add(50);
+
+        // Step 3: Convert ArrayList to array
+        Object[] arr = list.toArray();
+
+        // Step 4: Display elements
+        System.out.println("Array elements are:");
+        for (Object obj : arr) {
+            System.out.print(obj + " ");
+        }
+
+        // Step 5: Calculate sum
+        int sum = 0;
+        for (int num : list) {
+            sum += num;
+        }
+
+        // Step 6: Display sum
+        System.out.println("\nSum of elements: " + sum);
+    }
+}
+
+
+
+🧾 Example Output
+Array elements are:
+10 20 30 40 50 
+Sum of elements: 150
+      
+
+------------------------------------------------------------------------
+
+🧠 Algorithm
+
+1. Start
+2. Create an ArrayList of integers.
+3. Add elements to the ArrayList.
+4. Convert the ArrayList to an array using toArray().
+5. Display all elements of the array.
+6. Calculate the sum of all elements.
+7. Display the sum.
+8. Stop
+   
+
+------------------------------------------------------------------------
+
+
+🔷 Flowchart (ASCII Design)
+
+                 +-------------------------+
+                 |         START           |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Create ArrayList object |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Add integers to list    |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Convert to array        |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Display all elements    |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Calculate sum of values |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 | Display total sum       |
+                 +-----------+-------------+
+                             |
+                             v
+                 +-------------------------+
+                 |          END            |
+                 +-------------------------+
+
+
+`
     },
     {
       id: 1,
