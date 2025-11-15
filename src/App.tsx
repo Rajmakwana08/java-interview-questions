@@ -4482,10 +4482,867 @@ J@v@ is fun
       codeExample: ``
     },
     {
-      id: 1,
-      question: "",
+      id: 8888,
+      question: "Mid semester exam Q&A....",
       answer: "",
-      codeExample: ``
+      codeExample: `
+Q1. Short answers (part a) — 1 mark each
+
+1. Which type of inheritance is not supported in Java, why, and what problem does it cause?
+Java does not support multiple inheritance of classes (i.e., a class cannot extend more than one class).
+
+Why: to avoid ambiguity (the "diamond problem") when two parent classes define the same 
+method or field name.
+
+Problem example: if ClassA and ClassB both define void hello(), and ClassC extends both, 
+the compiler would not know which hello() to use.
+
+
+----------------------------------
+
+
+2. Which methods and algorithm are used for garbage collection in Java?
+
+
+🌟 What is Garbage Collection (GC) in Java?
+
+Garbage Collection means:
+
+➡ Java automatically removes (deletes) objects that are no longer needed.
+➡ This helps free memory.
+
+You do NOT delete objects manually.
+Java does it for you.
+
+
+✅ Very Simple Example of Garbage Collection
+
+✔ Program:
+
+class Demo {
+    public void finalize() {
+        System.out.println("Object Deleted");
+    }
+
+    public static void main(String[] args) {
+
+        Demo obj = new Demo();
+
+        obj = null;  // Object is now useless
+
+        System.gc(); // Request garbage collector
+    }
+}
+
+
+✅ Explanation in Simple Words
+
+Demo obj = new Demo();
+    👉 Creates an object.
+
+obj = null;
+    👉 Now no one is using the object.
+    👉 It becomes garbage.
+
+System.gc();
+    👉 Ask Java to delete garbage.
+
+finalize()
+    👉 This message prints when the object is deleted.
+
+
+🎯 Output when you run the program
+    Object Deleted
+
+✔ Because the object was removed by Garbage Collector.
+
+
+⚠ Note
+
+Sometimes the exact time of GC is not fixed.
+But most of the time, this simple program prints:
+
+    Object Deleted
+
+    
+----------------------------------
+
+⭐ Garbage Collection in Java
+
+Java automatically removes unused objects from memory.
+To do this, it uses methods and algorithms.
+
+✅ 1. Methods used in Garbage Collection
+
+(a) System.gc()
+
+    You call this method to request garbage collection.
+    Java may run the garbage collector after this.
+
+Example:
+
+System.gc(); 
+
+
+(b) finalize() method
+
+    This method runs before an object is deleted.
+    Used to show that the object is going to be destroyed.
+
+Example:
+
+protected void finalize() {
+    System.out.println("Object destroyed");
+}
+
+
+
+⭐ 2. Algorithms used in Garbage Collection
+
+Java mainly uses these algorithms:
+
+
+(a) Mark and Sweep Algorithm
+
+Very simple:
+
+    Mark Phase:
+        Java marks (identifies) all objects that are still in use.
+
+    Sweep Phase:
+        Java removes objects that are NOT marked (unused).
+
+    👉 Like marking good items and throwing away unmarked ones.
+
+
+(b) Copying Algorithm
+
+    Java divides memory into two parts.
+    It copies active (used) objects to one side.
+    Deletes all unused objects from the other side.
+
+👉 Like moving useful things to a new room and throwing everything else.
+
+
+(c) Generational Garbage Collection
+
+Java divides memory into:
+
+    Young Generation (new objects)
+    Old Generation (long-living objects)
+    New objects are cleaned quickly.
+    Old objects are cleaned less often.
+
+👉 Fast and efficient.
+
+
+(d) G1 Garbage Collector (Garbage First)
+
+    Java breaks memory into small regions.
+    Cleans areas with most garbage first.
+    Works fast and smoothly.
+
+👉 Best for large applications.
+
+
+🎯 Summary (Very Simple)
+
+| Part                | Meaning                     |
+| ------------------- | --------------------------- |
+| System.gc()         | Ask Java to clean memory    |
+| finalize()          | Runs before object deletion |
+| Mark-Sweep          | Mark used → delete unused   |
+| Copying             | Move used → delete rest     |
+| Generational GC     | Clean young objects first   |
+| G1 GC               | Java’s fast modern GC       |
+
+
+
+----------------------------------------------------------------------------------------
+
+
+3. List the steps and commands to compile and run a Java program using Command Prompt.
+Suppose file name is HelloWorld.java. Steps:
+
+    Save the file HelloWorld.java.
+    Open Command Prompt and go to folder containing the file.
+    Compile: javac HelloWorld.java → produces HelloWorld.class.
+    Run: java HelloWorld (do not include .class or .java).
+
+Example commands:
+
+C:\> cd C:\MyJavaPrograms
+C:\MyJavaPrograms> javac HelloWorld.java
+C:\MyJavaPrograms> java HelloWorld
+
+
+----------------------------------------------------------------------------------------
+
+
+Q1. (b) Objective / MCQs / True-False / Fill-in (7 items) — answers with short justification
+
+1. Variables declared inside a class but outside any method, constructor, or block are known as:
+Answer: a. Instance variable
+    (Instance variables belong to objects of the class.)
+
+
+2. True or False: Runtime polymorphism is also known as static polymorphism.
+Answer: False.
+
+    Runtime polymorphism = dynamic binding = method overriding.
+    Static polymorphism = compile-time polymorphism = method overloading.
+
+
+3. The ServerSocket class belongs to which package?
+Answer: b. java.net
+    (ServerSocket is a network/socket class.)
+
+
+4. Which block always executes whether an exception occurs or not?
+Answer: b. finally block
+    (finally always executes (except when JVM exits abruptly), used for cleanup.)
+
+
+5. Which method is used to return an immutable list containing specified elements?
+Options: Arrays.asList, Collections.unmodifiableList, List.of, Stream.of.
+Answer: c. List.of()
+
+    List.of(...) (since Java 9) returns an immutable list with the given elements.
+
+
+6. Does a TreeSet in Java contain unique elements?
+Answer: c. Yes, TreeSet contains only unique elements
+
+    TreeSet stores sorted unique elements (it behaves like a Set).
+
+
+7. Which method of the File class is used to create a new directory?
+Answer: b. mkdir()
+
+    mkdir() creates a directory; mkdirs() creates directory and parents.
+
+
+----------------------------------------------------------------------------------------
+
+
+Q2 (a) — 2 marks (two short questions)
+
+1. What is the purpose of Unicode in Java? Give an example of how a Unicode character can be used in a Java program.
+
+Purpose: Java uses Unicode to support characters from many languages (not just ASCII). Unicode 
+ensures Java strings and char can represent international characters.
+
+Example: use Unicode escape XXXX or directly include Unicode characters in strings.
+
+// Example using Unicode escape
+public class UnicodeExample {
+    public static void main(String[] args) {
+        char smith = '\u2605'; // Unicode star character
+        System.out.println("Star: " + smith);
+        System.out.println("Hindi: " + "नमस्ते"); // direct unicode in string
+    }
+}
+
+
+Output:
+
+Star: ★
+Hindi: नमस्ते
+
+
+------------------------------
+
+
+2. Differentiate between method overloading and method overriding with simple examples.
+
+Method overloading (same class): Same method name, different parameter lists (different types or counts). It's compile-time (static) polymorphism.
+
+class Calc {
+    int add(int a, int b){ return a+b; }
+    double add(double a, double b){ return a+b; } // overloaded method
+}
+
+
+Method overriding (inheritance): Subclass defines a method with same signature as superclass. It's runtime polymorphism.
+
+class Animal {
+    void sound(){ System.out.println("Some sound"); }
+}
+class Dog extends Animal {
+    @Override
+    void sound(){ System.out.println("Bark"); } // overriding
+}
+
+
+---------------------------------------------------------------------------------------
+
+
+Q2 (b) — 3 marks each
+
+1. Describe various types of variables in Java and illustrate each with an example.
+
+please check question no 12 
+
+Types of variables:
+
+
+Instance variables (non-static fields) — belong to an object; every object has its own copy.
+
+class Person {
+    String name; // instance variable
+}
+
+
+Static variables (class variables) — declared with static; shared across all instances.
+
+class Counter {
+    static int count = 0; // static variable
+}
+
+
+Local variables — declared inside methods or blocks; scope limited to the method/block.
+
+void method() {
+    int local = 5; // local variable
+}
+
+
+Parameter variables — variables that appear in method signatures; receive arguments.
+
+void printName(String name) { // 'name' is a parameter variable
+    System.out.println(name);
+}
+
+
+
+------------------------------
+
+
+2. Explain the concept of ArrayList in Java. Write a simple Java program to create an ArrayList of 
+integers, add 5 numbers to it, and display the elements.
+
+Concept: ArrayList is a resizable array implementation of List interface. It can grow/shrink 
+dynamically, allows random access, and preserves insertion order. It stores objects (so use Integer 
+for ints).
+
+
+
+Example program:
+
+
+import java.util.ArrayList;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        // Create an ArrayList of Integer
+        ArrayList<Integer> numbers = new ArrayList<>();
+        // Add 5 numbers
+        numbers.add(10);
+        numbers.add(20);
+        numbers.add(30);
+        numbers.add(40);
+        numbers.add(50);
+        // Display elements
+        System.out.println("ArrayList elements: " + numbers);
+        // Or iterate
+        for (Integer n : numbers) {
+            System.out.println(n);
+        }
+    }
+}
+
+
+Output:
+
+ArrayList elements: [10, 20, 30, 40, 50]
+10
+20
+30
+40
+50
+
+
+---------------------------------------------------------------------------------------
+
+
+Q3 Attempt any TWO (two questions) — each 5 marks
+
+Q3.1 Apply the concept of Hierarchical Inheritance in Java. Write a simple program showing one superclass and multiple subclasses, and explain how subclasses inherit properties.
+
+Explanation (simple):
+
+Hierarchical inheritance means one superclass and many subclasses that extend that superclass. 
+Subclasses inherit fields and methods from the superclass.
+
+
+
+Program example:
+
+
+// Superclass
+class Vehicle {
+    String brand = "Generic";
+    void drive() {
+        System.out.println("Vehicle is driving");
+    }
+}
+
+// Subclass 1
+class Car extends Vehicle {
+    void carDetails() {
+        System.out.println("Car brand: " + brand + " - Car drives smoothly.");
+    }
+}
+
+// Subclass 2
+class Bike extends Vehicle {
+    void bikeDetails() {
+        System.out.println("Bike brand: " + brand + " - Bike is fast.");
+    }
+}
+
+public class HierarchicalExample {
+    public static void main(String[] args) {
+        Car c = new Car();
+        c.drive();       // inherited from Vehicle
+        c.carDetails();
+        Bike b = new Bike();
+        b.drive();       // inherited from Vehicle
+        b.bikeDetails();
+    }
+}
+
+
+How inheritance works here: Car and Bike automatically have access to brand and drive() from 
+Vehicle. Each subclass can add its own methods or override existing ones.
+
+
+------------------------------
+
+
+Q3.2 Analyze the main features of Java and explain in simple words how each feature makes Java popular and useful.
+
+
+Main features and why they matter (simple):
+
+
+1. Platform independent (Write Once, Run Anywhere): Java bytecode runs on JVM on any platform; you 
+    don’t need to recompile for each OS. This makes distribution and deployment easy.
+
+2. Object-Oriented: Everything is modeled with objects (classes, inheritance, polymorphism, 
+    encapsulation). This helps organize large projects and reuse code.
+
+3. Automatic memory management (Garbage Collection): Programmers don’t manually free memory; the 
+    JVM reclaims unused objects — fewer memory bugs.
+
+4. Robust and strong type-checking: Java checks types at compile and runtime, reducing runtime errors.
+
+5. Security: JVM provides a secure execution environment and classloader/sandboxing; useful for running 
+    untrusted code (applets historically).
+
+6. Multithreading support: Built-in concurrency support (threads, synchronized, concurrent libraries) helps 
+    build responsive and scalable apps.
+
+7. Rich standard library (APIs): Large standard library for I/O, networking, collections, GUI, etc., reduces 
+    need to reinvent features.
+
+8. Large ecosystem and tooling: Mature tools (IDE, build tools, frameworks) and community support 
+    speed development.
+
+Each feature reduces developer effort, increases reliability, portability and scalability — reasons Java is 
+popular for enterprise and cross-platform apps.
+
+
+------------------------------
+
+
+Q3.3 Evaluate the use of exception handling in Java. Explain hierarchy of exceptions 
+and illustrate with try-catch-finally examples.
+
+Why use exception handling (simple):
+
+Exception handling lets a program catch unexpected errors and handle them gracefully 
+(show messages, clean up resources) rather than crashing.
+
+
+Exception hierarchy (short):
+
+    Root: Throwable
+        Error (serious problems JVM usually can't handle, e.g., OutOfMemoryError)
+        Exception
+            RuntimeException (unchecked exceptions: e.g., NullPointerException, IndexOutOfBoundsException)
+            Other checked exceptions (must be declared or caught): e.g., IOException, SQLException
+
+
+
+Try-catch-finally example:
+
+
+public class ExceptionExample {
+    public static void main(String[] args) {
+        try {
+            int a = Integer.parseInt(args[0]); // may throw NumberFormatException
+            int b = Integer.parseInt(args[1]);
+            int c = a / b; // may throw ArithmeticException
+            System.out.println("Result: " + c);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Please provide two numbers as command-line arguments.");
+        } catch (NumberFormatException ex) {
+            System.out.println("Arguments must be integers.");
+        } catch (ArithmeticException ex) {
+            System.out.println("Cannot divide by zero.");
+        } finally {
+            System.out.println("Program finished (cleanup if needed).");
+        }
+    }
+}
+
+
+Explanation: try contains the code that may throw an exception. catch blocks handle specific exceptions (in order from specific to general). finally always runs — good to close files or release resources.
+
+
+---------------------------------------------------------------------------------------
+
+
+Q4 Answer the following — 5 marks each
+Q4 (a) Explain the Java Virtual Machine (JVM): architecture, working, and role in making Java platform independent.
+
+Simple explanation:
+
+What JVM is:
+
+The JVM is a runtime engine that executes Java bytecode. It forms an abstraction layer between compiled Java code and the underlying operating system and hardware.
+
+JVM Architecture
+
+                 +---------------------------------------+
+                 |         Java Virtual Machine (JVM)    |
+                 +---------------------------------------+
+
+ +---------------------------------------------------------------+
+ |                    Class Loader Subsystem                     |
+ |  (Loading  →  Linking(Verify, Prepare, Resolve)  →  Init)     |
+ +---------------------------------------------------------------+
+
+ +---------------------------------------------------------------+
+ |                Runtime Data Areas (Memory)                    |
+ +---------------------------------------------------------------+
+ |                                                               |
+ |   +-------------------+        +---------------------------+  |
+ |   |   Method Area     |        |       Heap                |  |
+ |   |  (Class info,     |        |  (Objects, Instances,     |  |
+ |   |   static data)    |        |   Arrays)                 |  |
+ |   +-------------------+        +---------------------------+  |
+ |                                                               |
+ |   +-------------------+        +---------------------------+  |
+ |   |   Java Stack      |        |      PC Registers         |  |
+ |   | (Frames: local    |        | (Current instruction      |  |
+ |   |  vars, operand    |        |  address per thread)      |  |
+ |   |  stack)           |        +---------------------------+  |
+ |   +-------------------+                                       |
+ |                                                               |
+ |   +-------------------+                                       |
+ |   | Native Method     |                                       |
+ |   |      Stack        |                                       |
+ |   | (for native code) |                                       |
+ |   +-------------------+                                       |
+ +---------------------------------------------------------------+
+
+ +---------------------------------------------------------------+
+ |                    Execution Engine                           |
+ |---------------------------------------------------------------|
+ |  Interpreter   |   JIT Compiler   |     Garbage Collector     |
+ +---------------------------------------------------------------+
+
+ +---------------------------------------------------------------+
+ |           JNI (Java Native Interface) & Native Libraries      |
+ +---------------------------------------------------------------+
+
+
+
+Short Explanation (easy words)
+
+Class Loader loads .class files into JVM.
+
+Runtime Data Areas hold memory used during execution:
+
+    Method Area: class-level information.
+    Heap: objects.
+    Stack: method calls & local variables.
+    PC Register: next instruction for each thread.
+    Native Method Stack: C/C++ method memory.
+
+Execution Engine: actually runs the code
+(Interpreter + JIT + Garbage Collector).
+
+JNI: allows calling native OS libraries.
+
+------------------------------
+
+
+⭐ How JVM Works (Very Easy Explanation)
+
+Think of Java program like a recipe written in English.
+But the computer only understands machine language.
+
+So we need something in the middle to translate.
+
+This “middle helper” is JVM (Java Virtual Machine).
+
+
+🔥 JVM Working in Simple Steps
+Step 1: You write code
+
+Example:
+
+    System.out.println("Hello");
+
+
+This is written in Java language (English-like).
+
+
+
+Step 2: Java compiler (javac) converts it into bytecode
+
+javac Hello.java → produces
+Hello.class → contains bytecode (not human readable, not machine readable)
+
+Bytecode is like a universal language that any JVM can understand.
+
+
+
+Step 3: JVM reads the bytecode
+
+Now JVM comes into action.
+It does 3 jobs inside:
+
+
+
+🧠 JVM Job 1 — Class Loader
+
+Class Loader loads classes into memory.
+Think of it like “opening the file so that JVM can read it.”
+
+
+📦 JVM Job 2 — Memory Manager / Runtime Data Areas
+
+JVM creates different memory areas:
+
+✔ Heap → For objects
+
+Example:
+    new Student() → stored here
+
+
+✔ Stack → For method calls + local variables
+
+Example:
+Inside a method:
+
+    int a = 10;
+
+a goes to stack.
+
+
+✔ Method Area → Stores class names, method names, static variables
+
+Example:
+    static int count = 0;
+
+
+✔ PC Register → Stores which line should run next
+
+Example:
+Running line 5? PC register = 5
+
+
+✔ Native Method Stack → For C/C++ methods
+
+Used when Java uses OS functions.
+
+
+
+
+⚙ JVM Job 3 — Execution Engine
+
+This part actually runs your program.
+
+It has 3 workers:
+
+🔹 Interpreter
+
+Runs bytecode line by line (slower but immediate).
+
+
+🔹 JIT Compiler (Just In Time)
+
+Converts repeated bytecode into fast machine code
+→ improves speed
+
+
+🔹 Garbage Collector
+
+Deletes unused objects automatically
+→ No need for free() like in C
+
+
+🎯 Last Step — You See Output
+
+After JVM runs the bytecode, you get the final result like:
+
+    Hello
+
+
+
+⭐ Why JVM Makes Java Special?
+
+✔ Same Java program runs everywhere
+
+Windows JVM → runs program
+Linux JVM → runs same program
+Mac JVM → runs same program
+
+This is why Java is “Write Once, Run Anywhere (WORA)”
+
+
+📘 Super Simple Summary (One Line Each)
+
+javac → converts .java → .class (bytecode)
+JVM → reads .class and runs it
+Class Loader → loads class
+Memory Area → stores data
+Execution Engine → executes instructions
+Garbage Collector → cleans trash
+
+
+How it works (flow):
+
+    Java source (.java) → compile with javac → produce .class bytecode.
+    Class loader loads .class into JVM.
+    Bytecode verifier ensures safety.
+    Execution engine either interprets or JIT-compiles bytecode to native machine code and executes it.
+    Garbage collector reclaims unused objects in heap.
+
+
+Role in platform independence:
+
+    Bytecode is the same across platforms. JVM implementations specific to OS/hardware execute the bytecode. 
+    So the same .class files run on any platform with a matching JVM: Write Once, Run Anywhere.
+
+
+----------------------------
+
+
+Q4 (b) Explain Java packages. Demonstrate how to create a package and use access specifiers to control visibility of classes and members.
+
+What is a package (simple):
+
+A package groups related classes and interfaces. It provides namespace management and access protection.
+
+How to create and use a package:
+
+
+1. Declare package at top of .java file:
+
+// inside file: com/example/util/MyUtil.java
+package com.example.util;
+
+public class MyUtil {
+    public static int publicValue = 10;
+    protected static int protectedValue = 20;
+    static int defaultValue = 30; // package-private
+    private static int privateValue = 40;
+
+    public static void print() {
+        System.out.println("Util");
+    }
+}
+
+
+
+2. Access from another package:
+
+// inside file: com/example/app/MainApp.java
+package com.example.app;
+
+import com.example.util.MyUtil;
+
+public class MainApp {
+    public static void main(String[] args) {
+        System.out.println(MyUtil.publicValue); // OK
+        MyUtil.print(); // OK
+        // System.out.println(MyUtil.defaultValue); // Not accessible (package-private)
+        // System.out.println(MyUtil.privateValue); // Not accessible
+    }
+}
+
+
+
+3. Access specifiers summary:
+
+    public — accessible from any package.
+    protected — accessible in the same package and subclasses (even in other packages).
+    default (no modifier) — package-private: accessible only inside same package.
+    private — accessible only within the same class.
+
+
+Compile and run example (from parent folder):
+
+    javac com/example/util/MyUtil.java com/example/app/MainApp.java
+    java com.example.app.MainApp
+
+
+----------------------------
+
+
+OR (alternate Q4 (b) option) — Program to read two integers from command line and display division with exceptions handled
+
+Program that reads two integers from command line and handles possible exceptions 
+(ArrayIndexOutOfBoundsException, NumberFormatException, ArithmeticException)
+
+
+public class DivideCommandLine {
+    public static void main(String[] args) {
+        try {
+            // Check arguments length
+            if (args.length < 2) {
+                throw new ArrayIndexOutOfBoundsException("Two integers required");
+            }
+            int a = Integer.parseInt(args[0]); // NumberFormatException possible
+            int b = Integer.parseInt(args[1]);
+            int result = a / b; // ArithmeticException possible (divide by zero)
+            System.out.println("Division result: " + result);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            System.out.println("Error: Please provide two integer arguments.");
+        } catch (NumberFormatException ex) {
+            System.out.println("Error: Arguments must be valid integers.");
+        } catch (ArithmeticException ex) {
+            System.out.println("Error: Division by zero is not allowed.");
+        } catch (Exception ex) { // generic catch as fallback
+            System.out.println("Unexpected error: " + ex.getMessage());
+        } finally {
+            System.out.println("Program finished.");
+        }
+    }
+}
+
+
+Run examples:
+
+java DivideCommandLine 10 2 → Division result: 5
+java DivideCommandLine 10 0 → Error: Division by zero is not allowed.
+java DivideCommandLine 10 → Error: Please provide two integer arguments.
+
+
+Final notes & tips (easy & practical)
+
+    Save Java files with the same name as the public class (e.g., ArrayListExample.java for public class ArrayListExample).
+    Compile with javac FileName.java and run with java ClassName.
+    Use List.of(...) for small immutable lists; use ArrayList for resizable lists.
+    Use try-catch-finally to handle errors and finally to clean resources like streams.
+    For inheritance, favor interfaces or composition when multiple behaviors are needed (Java allows multiple interfaces).
+      
+      `
     },
     {
       id: 1,
