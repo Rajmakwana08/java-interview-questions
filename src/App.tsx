@@ -11569,28 +11569,337 @@ Aim: Find all integers and decimal numbers from a string using Regular Expressio
     },
 
     {
-      id: 1,
-      question: "",
+      id: 15.15,
+      question: "15. 15. Thread and Runnable interface Write a multi-threaded program which sets the priority of threads and gets the name of threads.",
       answer: "",
-      codeExample: ``
+      codeExample: `
+✅ Java Program (Thread + Runnable + Priority + Name)
+
+class MyTask implements Runnable {
+
+    @Override
+    public void run() {
+        Thread t = Thread.currentThread();
+        System.out.println("Running Thread: " + t.getName() +
+                           " | Priority: " + t.getPriority());
+    }
+}
+
+public class ThreadPriorityDemo {
+
+    public static void main(String[] args) {
+
+        MyTask task = new MyTask();
+
+        Thread t1 = new Thread(task);
+        Thread t2 = new Thread(task);
+        Thread t3 = new Thread(task);
+
+        // Set thread names
+        t1.setName("Thread-One");
+        t2.setName("Thread-Two");
+        t3.setName("Thread-Three");
+
+        // Set thread priorities (1 to 10)
+        t1.setPriority(Thread.MIN_PRIORITY);  // 1
+        t2.setPriority(Thread.NORM_PRIORITY); // 5
+        t3.setPriority(Thread.MAX_PRIORITY);  // 10
+
+        // Start all threads
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+
+
+✅ Sample Output
+Running Thread: Thread-One | Priority: 1
+Running Thread: Thread-Two | Priority: 5
+Running Thread: Thread-Three | Priority: 10
+      
+      `
     },
     {
-      id: 1,
-      question: "",
+      id: 16.16,
+      question: "16. Thread (sleep method) Write a program to calculate sum and factorial of numbers using sleep method.",
       answer: "",
-      codeExample: ``
+      codeExample: `
+✅ Java Program (Using sleep() method)
+
+class SumTask implements Runnable {
+    @Override
+    public void run() {
+        int sum = 0;
+        System.out.println("Sum Thread Started...");
+
+        try {
+            for (int i = 1; i <= 5; i++) {
+                sum += i;
+                System.out.println("Adding: " + i + " | Current Sum: " + sum);
+                Thread.sleep(500); // sleep for 0.5 seconds
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Final Sum = " + sum);
+    }
+}
+
+class FactorialTask implements Runnable {
+    @Override
+    public void run() {
+        int fact = 1;
+        System.out.println("Factorial Thread Started...");
+
+        try {
+            for (int i = 1; i <= 5; i++) {
+                fact *= i;
+                System.out.println("Multiplying: " + i + " | Current Factorial: " + fact);
+                Thread.sleep(500); // sleep for 0.5 seconds
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+
+        System.out.println("Final Factorial = " + fact);
+    }
+}
+
+public class SleepMethodDemo {
+    public static void main(String[] args) {
+
+        Thread sumThread = new Thread(new SumTask());
+        Thread factThread = new Thread(new FactorialTask());
+
+        sumThread.start();
+        factThread.start();
+    }
+}
+
+
+✅ Sample Output
+
+Sum Thread Started...
+Factorial Thread Started...
+Adding: 1 | Current Sum: 1
+Multiplying: 1 | Current Factorial: 1
+Adding: 2 | Current Sum: 3
+Multiplying: 2 | Current Factorial: 2
+Adding: 3 | Current Sum: 6
+Multiplying: 3 | Current Factorial: 6
+Adding: 4 | Current Sum: 10
+Multiplying: 4 | Current Factorial: 24
+Adding: 5 | Current Sum: 15
+Multiplying: 5 | Current Factorial: 120
+Final Sum = 15
+Final Factorial = 120
+      
+      `
     },
     {
-      id: 1,
-      question: "",
+      id: 17.17,
+      question: "17. Multi-threading Write a program to create multi-threaded application to perform banking tasks. [For Example: Withdrawal and Deposit from Joint account.]",
       answer: "",
-      codeExample: ``
+      codeExample: `
+✅ Short Java Program (Multithreading Banking Example)
+
+class Bank {
+    int balance = 1000;
+
+    synchronized void deposit(int amt) {
+        balance += amt;
+        System.out.println("Deposited: " + amt + " | Balance = " + balance);
+    }
+
+    synchronized void withdraw(int amt) {
+        if (balance >= amt) {
+            balance -= amt;
+            System.out.println("Withdrawn: " + amt + " | Balance = " + balance);
+        } else {
+            System.out.println("Insufficient Balance! Withdrawal failed.");
+        }
+    }
+}
+
+public class ShortBankThread {
+    public static void main(String[] args) {
+
+        Bank b = new Bank();
+
+        Thread t1 = new Thread(() -> b.deposit(500));
+        Thread t2 = new Thread(() -> b.withdraw(1200));
+
+        t1.start();
+        t2.start();
+    }
+}
+
+
+
+✅ Sample Output
+
+Withdrawn: 1200 | Balance = -200  (OR withdrawal failed depending on order)
+Deposited: 500 | Balance = 1500
+      
+      
+      `
     },
     {
-      id: 1,
-      question: "",
+      id: 18.18,
+      question: "18. AWT and Swing Write a program to create a Menubar and create 2 Menus File and Edit. Involve New, Open, Close as items in the File menu and then add a separator, then further add Save, Save As and again add separator and add another menu item named Print. Add all these items in File menu. Add Line, Rectangle and Circle as the menu items and add Radio Button before these menu items and add a separator. Then add Red, Green and Blue as menu items and add Check Box before these menu items.",
       answer: "",
-      codeExample: ``
+      codeExample: `
+🧠 Algorithm (Short & Simple)
+
+Start the program
+
+Create a JFrame window
+
+Create a MenuBar
+
+Add File and Edit menus
+
+Under File menu:
+
+Add: New, Open, Close
+
+Add separator
+
+Add: Save, Save As
+
+Add separator
+
+Add: Print
+
+Under Edit menu:
+
+Add RadioButtonMenuItem: Line, Rectangle, Circle
+
+Add separator
+
+Add CheckBoxMenuItem: Red, Green, Blue
+
+Add MenuBar to JFrame
+
+Show the window
+
+End
+
+
+🎯 Flowchart (ASCII)
+
+                 ┌────────────┐
+                 │   START     │
+                 └─────┬───────┘
+                       │
+          ┌────────────▼─────────────┐
+          │ Create JFrame Window      │
+          └────────────┬─────────────┘
+                       │
+             ┌─────────▼──────────┐
+             │ Create MenuBar      │
+             └─────────┬──────────┘
+                       │
+      ┌────────────────▼────────────────┐
+      │ Add File Menu + Items + Separator│
+      └────────────────┬────────────────┘
+                       │
+      ┌────────────────▼────────────────┐
+      │ Add Edit Menu + Radio + Checkbox│
+      └────────────────┬────────────────┘
+                       │
+               ┌───────▼────────┐
+               │ Add MenuBar     │
+               └───────┬────────┘
+                       │
+               ┌───────▼───────┐
+               │   SHOW GUI     │
+               └───────┬────────┘
+                       │
+                 ┌─────▼──────┐
+                 │    END      │
+                 └─────────────┘
+
+
+💻 Short & Simple Java Program (Swing + AWT)
+
+
+import javax.swing.*;
+
+public class MenuBarDemo {
+    public static void main(String[] args) {
+
+        JFrame f = new JFrame("MenuBar Example");
+        f.setSize(400, 300);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JMenuBar mb = new JMenuBar();
+
+        // File Menu
+        JMenu file = new JMenu("File");
+        file.add(new JMenuItem("New"));
+        file.add(new JMenuItem("Open"));
+        file.add(new JMenuItem("Close"));
+        file.addSeparator();
+        file.add(new JMenuItem("Save"));
+        file.add(new JMenuItem("Save As"));
+        file.addSeparator();
+        file.add(new JMenuItem("Print"));
+
+        // Edit Menu
+        JMenu edit = new JMenu("Edit");
+
+        // Radio Button items
+        ButtonGroup bg = new ButtonGroup();
+        JRadioButtonMenuItem line = new JRadioButtonMenuItem("Line");
+        JRadioButtonMenuItem rect = new JRadioButtonMenuItem("Rectangle");
+        JRadioButtonMenuItem circle = new JRadioButtonMenuItem("Circle");
+
+        bg.add(line);
+        bg.add(rect);
+        bg.add(circle);
+
+        edit.add(line);
+        edit.add(rect);
+        edit.add(circle);
+        edit.addSeparator();
+
+        // CheckBox items
+        JCheckBoxMenuItem red = new JCheckBoxMenuItem("Red");
+        JCheckBoxMenuItem green = new JCheckBoxMenuItem("Green");
+        JCheckBoxMenuItem blue = new JCheckBoxMenuItem("Blue");
+
+        edit.add(red);
+        edit.add(green);
+        edit.add(blue);
+
+        // Add menus to menubar
+        mb.add(file);
+        mb.add(edit);
+
+        f.setJMenuBar(mb);
+        f.setVisible(true);
+    }
+}
+
+
+
+📝 Output (Description)
+
+✔ A window appears
+✔ MenuBar contains File and Edit menus
+✔ File menu has:
+New, Open, Close → separator → Save, Save As → separator → Print
+✔ Edit menu has:
+Radio Buttons → Line, Rectangle, Circle
+Separator
+Checkboxes → Red, Green, Blue
+      
+      
+      `
     },
     {
       id: 1,
