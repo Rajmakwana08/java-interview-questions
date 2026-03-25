@@ -9545,22 +9545,224 @@ Components: JButton, JLabel, JTable, JTree, JComboBox, etc.
       `
     },
     {
-      id: 1,
-      question: "",
+      id: 81,
+      question: "81. What is Object Class",
       answer: "",
-      codeExample: ``
+      codeExample: `
+💡 What is Object Class in Java?
+
+In Java, Object class is the root (parent) class of all classes.
+
+👉 This means:
+
+Every class you create automatically extends Object class (even if you don’t write it).
+
+
+🔹 Simple Example
+
+class Raj {
+}
+
+👉 Internally Java treats it like:
+
+class Raj extends Object {
+}
+
+🔹 Why is Object Class Important?
+
+Because it provides common methods that every object can use.
+
+
+
+💡 11 Methods of Object Class (Easy Explanation)
+🔹 1. toString()
+
+👉 Converts object to string
+
+Default Output:
+
+Raj@1b6d3586
+
+Example:
+
+class Raj {
+    public String toString() {
+        return "This is Raj object";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(new Raj());
+    }
+}
+
+✅ Output:
+
+This is Raj object
+
+
+🔹 2. equals(Object obj)
+
+👉 Compares two objects
+
+Example:
+
+String a = new String("hi");
+String b = new String("hi");
+
+System.out.println(a.equals(b));  // true
+
+
+🔹 3. hashCode()
+
+👉 Gives unique number for object
+
+Example:
+
+String a = "hi";
+System.out.println(a.hashCode());
+
+
+🔹 4. getClass()
+
+👉 Returns class info
+
+Example:
+
+Raj r = new Raj();
+System.out.println(r.getClass());
+
+✅ Output:
+
+class Raj
+
+
+🔹 5. clone()
+
+👉 Creates copy of object
+
+Example:
+
+class Raj implements Cloneable {
+    int x = 10;
+
+    public static void main(String[] args) throws Exception {
+        Raj r1 = new Raj();
+        Raj r2 = (Raj) r1.clone();
+
+        System.out.println(r2.x);
+    }
+}
+
+
+🔹 6. finalize()
+
+👉 Called before object is destroyed (GC)
+
+Example:
+
+protected void finalize() {
+    System.out.println("Object destroyed");
+}
+
+⚠️ Rarely used now (deprecated concept)
+
+
+🔹 7. wait()
+
+👉 Makes thread wait
+
+Example (concept):
+
+obj.wait();
+
+
+🔹 8. wait(long time)
+
+👉 Wait for specific time
+
+obj.wait(1000); // 1 second
+
+
+🔹 9. wait(long time, int nanos)
+
+👉 Wait with nano precision
+
+obj.wait(1000, 500);
+
+
+🔹 10. notify()
+
+👉 Wake up one waiting thread
+
+obj.notify();
+
+
+🔹 11. notifyAll()
+
+👉 Wake up all waiting threads
+
+obj.notifyAll();
+      
+      `
     },
     {
-      id: 1,
-      question: "",
+      id: 82,
+      question: "82. what is What is a Concrete",
       answer: "",
-      codeExample: ``
+      codeExample: `
+💡 What is a Concrete in Java?
+
+👉 In Java, “Concrete” means something that is complete and fully implemented.
+
+🔹 Concrete Class
+
+A Concrete Class is a class that:
+
+    has full implementation
+    has no abstract methods
+    you can create object of it directly
+
+
+✅ Example
+
+class Raj {
+    void show() {
+        System.out.println("Hello");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Raj r = new Raj();  // object created
+        r.show();
+    }
+}
+
+
+👉 This is a Concrete Class because:
+
+Method is fully defined ✅
+Object can be created ✅
+      
+      `
     },
     {
-      id: 1,
-      question: "",
-      answer: "",
-      codeExample: ``
+      id: 83,
+      question: "83. Can you call Main class multiple time.",
+      answer: "Yes",
+      codeExample: `
+class Main {
+    static {
+        main(null); 
+    }
+
+    public static void main(String[] args) {
+        System.out.println("hello");
+    }
+}
+      `
     },
     {
       id: 1,
